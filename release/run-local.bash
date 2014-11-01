@@ -10,4 +10,6 @@
 #
 
 docker run -it -p 9000:9000 --name="release" release
-docker commit release release-built
+docker commit release overview-release-built
+docker tag overview-release-built znmeb/overview-release-built
+docker push znmeb/overview-release-built
