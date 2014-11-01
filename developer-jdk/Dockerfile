@@ -20,3 +20,8 @@ RUN rm redis-2.8.17.tar.gz
 
 # give the non-root user their home
 RUN chown -R overview:overview /home/overview
+
+# cue up 'dev'
+WORKDIR /home/overview/overview-server-master
+USER overview
+CMD [ "./dev" ]
