@@ -10,4 +10,5 @@
 #
 
 docker run -it -p 9000:9000 --name="developer" znmeb/overview-developer
+docker rmi developer-built
 docker commit developer developer-built
