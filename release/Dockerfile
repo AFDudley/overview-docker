@@ -2,8 +2,8 @@ FROM developer-built
 MAINTAINER M. Edward (Ed) Borasky "znmeb@znmeb.net"
 
 # clean and build the zipfile
-WORKDIR /home/overview/overview-server-master
 USER overview
+WORKDIR /home/overview/overview-server-master
 RUN auto/clean-fully.sh
 RUN ./build overview-release.zip
 
@@ -11,5 +11,6 @@ RUN ./build overview-release.zip
 WORKDIR /home/overview
 RUN unzip /home/overview/overview-server-master/overview-release.zip
 
-# cleanup
-RUN rm -fr /home/overview/overview-server-master
+# get ready to run
+WORKDIR /home/overview/overview-release
+CMD [ "./run" ]
