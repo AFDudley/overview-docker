@@ -1,9 +1,19 @@
-FROM znmeb/overview-docker-core-image
+FROM ubuntu:trusty
 MAINTAINER M. Edward (Ed) Borasky "znmeb@znmeb.net"
 
-# Java Development Kit
+# core Overview dependencies
 RUN apt-get update && apt-get install -y \
-  openjdk-7-jdk
+  build-essential \
+  git \
+  libreoffice \
+  openjdk-7-jdk \
+  postgresql \
+  unzip \
+  wget \
+  zip
+
+# add a non-root user
+RUN useradd overview -m
 
 # get the repository
 WORKDIR /home/overview
@@ -20,6 +30,9 @@ RUN rm redis-2.8.17.tar.gz
 
 # give the non-root user their home
 RUN chown -R overview:overview /home/overview
+
+# expose the server port
+EXPOSE 9000
 
 # cue up 'dev'
 WORKDIR /home/overview/overview-server-master
