@@ -9,5 +9,8 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
+# remove 'developer' image
 docker rmi developer
+
+# build 'developer' image
 docker build -t developer .
