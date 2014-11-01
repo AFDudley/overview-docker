@@ -1,9 +1,8 @@
 FROM znmeb/overview-docker-core-image
 MAINTAINER M. Edward (Ed) Borasky "znmeb@znmeb.net"
 
-# Java Development Kit and git
+# Java Development Kit
 RUN apt-get update && apt-get install -y \
-  git \
   openjdk-7-jdk
 
 # get the repository
