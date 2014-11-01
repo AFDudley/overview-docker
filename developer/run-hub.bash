@@ -9,6 +9,7 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
+docker rm developer
 docker run -it -p 9000:9000 --name="developer" znmeb/overview-developer
 docker rmi developer-built
 docker commit developer developer-built
