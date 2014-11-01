@@ -9,5 +9,5 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-docker run -it -p 9000:9000 --name="developer-jdk" znmeb/overview-docker-developer-jdk
-docker commit overview-docker-developer-jdk overview-docker-developer-jdk-built
+docker run -it -p 9000:9000 --name="developer" developer
+docker commit developer developer-built
