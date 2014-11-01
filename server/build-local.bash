@@ -9,7 +9,5 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-docker run -it -p 9000:9000 --name="release" release
-docker commit release overview-release-built
-docker tag overview-release-built znmeb/overview-release-built
-docker push znmeb/overview-release-built
+# build 'server' image
+docker build -t server .

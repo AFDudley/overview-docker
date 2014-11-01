@@ -9,4 +9,11 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-docker build -t release .
+# create 'server' container
+docker rm server
+docker run -it -p 9000:9000 --name="server" server
+
+# create and push 'server-built' image
+docker commit server overview-server-built
+docker tag overview-server-built znmeb/overview-server-built
+docker push znmeb/overview-server-built
