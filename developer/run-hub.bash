@@ -9,10 +9,8 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-# remove 'developer' container
-docker rm developer
-
 # create 'developer' container
+docker rm developer
 docker run -it -p 9000:9000 --name="developer" znmeb/overview-developer
 
 # create and push 'developer-built' image
