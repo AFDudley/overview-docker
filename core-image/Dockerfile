@@ -4,6 +4,7 @@ MAINTAINER M. Edward (Ed) Borasky "znmeb@znmeb.net"
 # core Overview dependencies
 RUN apt-get update && apt-get install -y \
   build-essential \
+  git \
   libreoffice \
   postgresql \
   unzip \
