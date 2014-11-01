@@ -14,27 +14,24 @@ RUN apt-get update && apt-get install -y \
 
 # add a non-root user
 RUN useradd overview -m
+USER overview
 
 # get the repository
 WORKDIR /home/overview
-RUN wget -q https://github.com/overview/overview-server/archive/master.zip
-RUN unzip master.zip
-RUN rm master.zip
+RUN git clone \
+  https://github.com/overview/overview-server.git \
+  overview-server-source
 
 # overwrite Redis with upstream source
-WORKDIR /home/overview/overview-server-master/deps/redis/
+WORKDIR /home/overview/overview-server-source/deps/redis/
 RUN wget -q http://download.redis.io/releases/redis-2.8.17.tar.gz
 RUN rm -fr redis-2.8.17
 RUN tar xf redis-2.8.17.tar.gz
 RUN rm redis-2.8.17.tar.gz
 
-# give the non-root user their home
-RUN chown -R overview:overview /home/overview
-
 # expose the server port
 EXPOSE 9000
 
 # cue up 'dev'
-WORKDIR /home/overview/overview-server-master
-USER overview
+WORKDIR /home/overview/overview-server-source
 CMD [ "./dev" ]
