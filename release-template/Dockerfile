@@ -1,7 +1,10 @@
 FROM ubuntu:trusty
 MAINTAINER M. Edward (Ed) Borasky "znmeb@znmeb.net"
 
-# core Overview dependencies
+# expose the server port
+EXPOSE 9000
+
+# install Overview run-time dependencies
 RUN apt-get update && apt-get install -y \
   build-essential \
   libreoffice \
@@ -12,5 +15,5 @@ RUN apt-get update && apt-get install -y \
 RUN useradd overview -m
 USER overview
 
-# expose the server port
-EXPOSE 9000
+WORKDIR /home/overview/overview-release
+CMD [ "./run" ]
