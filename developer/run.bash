@@ -13,9 +13,12 @@
 docker rm developer
 docker run -it -p 9000:9000 --name="developer" znmeb/overview-developer
 
+# create 'developer-built.tbz2'
+docker export developer | bzip2 -9c > developer-built.tbz2
+
 # create and push 'developer-built' image
-docker rmi developer-built
-docker commit developer developer-built
-docker tag developer-built znmeb/overview-developer-built
+docker rmi znmeb/developer-built
+docker commit developer znmeb/developer-built
+docker login
 docker push znmeb/overview-developer-built
 docker images
