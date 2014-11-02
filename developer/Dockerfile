@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 RUN useradd overview -m
 USER overview
 
-# get the repository
+# get the source repository
 WORKDIR /home/overview
 RUN git clone \
   https://github.com/overview/overview-server.git \
