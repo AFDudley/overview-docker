@@ -1,7 +1,13 @@
 FROM ubuntu:trusty
 MAINTAINER M. Edward (Ed) Borasky "znmeb@znmeb.net"
 
-# core Overview dependencies
+# expose the server port
+EXPOSE 9000
+
+# define a volume for the release tree
+VOLUME /home/overview/overview-server
+
+# install Overview build dependencies
 RUN apt-get update && apt-get install -y \
   build-essential \
   git \
@@ -32,9 +38,6 @@ RUN wget -q http://download.redis.io/releases/redis-2.8.17.tar.gz
 RUN rm -fr redis-2.8.17
 RUN tar xf redis-2.8.17.tar.gz
 RUN rm redis-2.8.17.tar.gz
-
-# expose the server port
-EXPOSE 9000
 
 # cue up build script
 WORKDIR /home/overview/overview-server-source/znmeb-release

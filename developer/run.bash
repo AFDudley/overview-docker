@@ -9,16 +9,23 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-# create 'developer' container
-docker rm developer
-docker run -it -p 9000:9000 --name="developer" znmeb/overview-developer
+# build into 'developerc' container
+docker rm developerc
+docker run -it -p 9000:9000 \
+  --name="developerc" \
+  znmeb/overview-developer
 
-# create 'developer-built.tbz2'
-docker export developer | bzip2 -9c > developer-built.tbz2
+# 'developerc' is still running - copy release tree into 'releasec' container
+docker rm releasec
+docker run -it -p 9000:9000 \
+  --name="releasec" \
+  --volumes-from="developerc" \
+  znmeb/overview-release-template \
+  cp -rp /home/overview/overview-server /home/overview/overview-release
 
-# create and push 'developer-built' image
-docker rmi znmeb/developer-built
-docker commit developer znmeb/developer-built
+# create and push 'overview-release' image
+docker rmi znmeb/overview-release
+docker commit releasec znmeb/overview-release
 docker login
-docker push znmeb/overview-developer-built
+docker push znmeb/overview-release
 docker images
