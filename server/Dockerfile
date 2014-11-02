@@ -1,4 +1,4 @@
-FROM developer-built
+FROM znmeb/overview-developer-built
 MAINTAINER M. Edward (Ed) Borasky "znmeb@znmeb.net"
 
 # clean and build the zipfile
