@@ -19,8 +19,12 @@ USER overview
 # get the source repository
 WORKDIR /home/overview
 RUN git clone \
-  https://github.com/overview/overview-server.git \
+  https://github.com/znmeb/overview-server.git \
   overview-server-source
+
+# sync with upstream master
+WORKDIR /home/overview/overview-server-source/znmeb-release
+RUN ./sync.bash
 
 # overwrite Redis with upstream source
 WORKDIR /home/overview/overview-server-source/deps/redis/
@@ -32,6 +36,6 @@ RUN rm redis-2.8.17.tar.gz
 # expose the server port
 EXPOSE 9000
 
-# cue up 'dev'
-WORKDIR /home/overview/overview-server-source
-CMD [ "./dev" ]
+# cue up build script
+WORKDIR /home/overview/overview-server-source/znmeb-release
+CMD [ "./build.bash" ]
